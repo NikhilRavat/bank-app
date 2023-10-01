@@ -32,7 +32,14 @@ builder.Services.AddDbContext<BanksDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BanksDB"));
 });
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BanksDbContext>().AddDefaultTokenProviders(); ;
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Password.RequiredUniqueChars = 0;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 4;
+    options.Password.RequireUppercase = false;
+}).AddEntityFrameworkStores<BanksDbContext>().AddDefaultTokenProviders(); ;
 
 builder.Services.AddAuthentication(options =>
 {

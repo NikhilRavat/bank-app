@@ -19,10 +19,6 @@ function Login() {
     setShowPassword(!showPassword);
   };
   const userState = useSelector((state) => state.user);
-  if (!userState.isLoading && userState.data !== "") {
-    debugger;
-    navigate("/");
-  }
   const LoginSubmit = async (formData) => {
     const user = await apiService(
       `Account/Login/${formData.userName}/${formData.Password}`,
@@ -31,6 +27,21 @@ function Login() {
         type: "login_user",
       }
     );
+    var userData = parseJwt(user.payload);
+
+    const userModel = {
+      userName: userData.unique_name,
+      role: userData.role,
+      token: user.payload,
+    };
+
+    localStorage.setItem('user', JSON.stringify(userModel))
+    dispatch({
+      type: "login_user",
+      payload: userModel,
+    });
+
+    navigate('/')
   };
 
   const parseJwt = (token) => {
@@ -81,9 +92,8 @@ function Login() {
                   register={register("Password", { required: true })}
                 />
                 <i
-                  className={`bi ${
-                    showPassword ? "bi-eye-slash" : "bi-eye"
-                  } input-icon`}
+                  className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"
+                    } input-icon`}
                   onClick={ShowPasswordHandler}
                 ></i>
                 {errors.Password && (

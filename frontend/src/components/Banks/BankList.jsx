@@ -40,9 +40,9 @@ function BankList() {
             {state.isLoading ? <Loading /> : ""}
             {state.error ?? ""}
             <div className="d-flex bank-list" style={{ flexWrap: "wrap" }}>
-              {state.data.map((bank) => {
+              {state.data ? state.data.map((bank) => {
                 return <BankDetailCard key={bank.id} {...bank} />;
-              })}
+              }) : ''}
             </div>
           </div>
         </div>

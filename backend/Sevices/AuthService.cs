@@ -53,7 +53,6 @@ public class AuthService : IAuthService
 
         return (1, "User created successfully!");
     }
-
     public async Task<(int, string)> Login(LoginModel model)
     {
         var user = await userManager.FindByNameAsync(model.Username);
@@ -76,8 +75,6 @@ public class AuthService : IAuthService
         string token = GenerateToken(authClaims);
         return (1, token);
     }
-
-
     private string GenerateToken(IEnumerable<Claim> claims)
     {
         var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTKey:Secret"]));

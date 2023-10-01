@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 function Layout() {
   const navigate = useNavigate();
   const userState = useSelector((state) => state.user);
+  const { userName, role } = userState.data;
   return (
     <div className="">
       <header className="py-3 text-bg-primary">
@@ -34,19 +35,25 @@ function Layout() {
                 aria-label="Search"
               />
             </form>
-
             <div className="text-end">
-              {JSON.stringify(userState)}
-              <button
-                type="button"
-                className="btn btn-outline-light me-2"
-                onClick={() => navigate("sign-in")}
-              >
-                Login
-              </button>
-              <button type="button" className="btn btn-warning">
-                Sign-up
-              </button>
+              {userName === undefined ? (
+                <>
+                  <button
+                    type="button"
+                    className="btn btn-outline-light me-2"
+                    onClick={() => navigate("sign-in")}
+                  >
+                    Login
+                  </button>
+                  <button type="button" className="btn btn-warning">
+                    Sign-up
+                  </button>
+                </>
+              ) : (
+                <p>
+                  {userName} {role}
+                </p>
+              )}
             </div>
           </div>
         </div>
