@@ -1,38 +1,30 @@
-.App {
-  text-align: center;
+.pageWrapper {
+  height: calc(100vh - 100px);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bank-card .field {
+  font-size: 13px;
+  color: grey;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bank-card .value {
+  font-size: 13px;
+  color: grey;
+  text-decoration: underline;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-label {
+  margin-bottom: 0.25rem;
+  color: #6e7174;
 }
 
-.App-link {
-  color: #61dafb;
+.password-input {
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-icon {
+  position: absolute;
+  top: 54%;
+  right: 12px;
+  cursor: pointer;
 }
