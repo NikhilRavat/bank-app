@@ -1,3 +1,18 @@
 .nav-link.active {
   text-decoration: underline;
 }
+
+.page-wrapper{
+  display: flex;
+}
+
+.side-bar{
+  width:230px;
+  background-color: grey;
+  min-height: calc(100vh - 66px);
+}
+
+.content{
+  width: calc(100% - 230px);
+  background-color: gold;
+}
