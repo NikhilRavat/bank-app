@@ -35,7 +35,6 @@ function Login() {
       token: user.payload,
     };
 
-    localStorage.setItem('user', JSON.stringify(userModel))
     dispatch({
       type: "login_user",
       payload: userModel,

@@ -1,6 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
+import storage from 'redux-persist/lib/storage';
 import bankReducer from "./bankReducer";
 import userReducer from "./userReducer";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 
 export const rootInitialState = {
   isLoading: true,
@@ -8,11 +19,22 @@ export const rootInitialState = {
   error: "",
 };
 
-const store = configureStore({
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+export const store = configureStore({
   reducer: {
     bank: bankReducer,
-    user: userReducer,
+    user: persistReducer(persistConfig, userReducer),
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
-export default store;
+export const persistor = persistStore(store)

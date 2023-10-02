@@ -1,12 +1,14 @@
 import axios from "axios";
+import { store } from "../reducer/rootReducer";
 
 //const baseUrl = "http://localhost:5220/api/";
 const baseUrl = "https://localhost:44350/api/";
 
 const getApiConfig = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { user } = store.getState();
+  //const user = JSON.parse(localStorage.getItem('user'));
   const config = {
-    headers: { Authorization: `Bearer ${user ? user.token : ''}` }
+    headers: { Authorization: `Bearer ${user ? user.data.token : ''}` }
   };
   return config;
 }

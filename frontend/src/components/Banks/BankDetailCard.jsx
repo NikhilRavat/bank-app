@@ -31,8 +31,8 @@ function BankDetailCard({
             <a href={website}>{website}</a>
           </div>
         </div>
-        <button className="btn btn-primary mt-2">Edit Bank</button>
-        <button className="btn btn-danger mt-2 ms-2">Remove Bank</button>
+        <button className="btn btn-primary mt-3">Edit Bank</button>
+        <button className="btn btn-danger mt-3 ms-2">Remove Bank</button>
       </div>
     </div>
   );

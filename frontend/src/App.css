@@ -2,6 +2,10 @@
   height: calc(100vh - 100px);
 }
 
+.app-logo{
+  filter: invert(100%) sepia(0%) saturate(7475%) hue-rotate(66deg) brightness(108%) contrast(98%);
+}
+
 .bank-card .field {
   font-size: 13px;
   color: grey;

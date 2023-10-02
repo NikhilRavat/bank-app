@@ -7,9 +7,10 @@ import App from "./App";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Layout from "./components/Shared/Layout";
-import store from "./reducer/rootReducer";
+import { persistor, store } from "./reducer/rootReducer";
 import Banks from "./components/Banks/Banks";
 import Login from "./components/Auth/Login";
+import { PersistGate } from "redux-persist/integration/react";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
     </Provider>
     {/* <App /> */}
   </React.StrictMode>
